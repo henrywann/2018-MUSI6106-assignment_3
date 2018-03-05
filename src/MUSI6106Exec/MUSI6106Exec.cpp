@@ -34,10 +34,10 @@ int main(int argc, char* argv[])
     CVibrato                 *pCVibrato = 0;
     int                      iNumChannels = 0;
     int                      iSampleRate = 44100;
-    float                    fModWidth = 0.0002;
-    float                    fModFreq  = 5; //5-14Hz
+    float                    fModWidth = 0.0025F;
+    float                    fModFreq  = 10; //5-14Hz
     
-    float                    fMaxDelayInSec = 0.005F; //5-10ms
+    float                    fMaxDelayInSec = 0.02F; //5-10ms
 
     showClInfo();
 

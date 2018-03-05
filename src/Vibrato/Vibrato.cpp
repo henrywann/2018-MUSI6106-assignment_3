@@ -25,11 +25,9 @@ CVibrato::CVibrato():
 
 CVibrato::~CVibrato ()
 {
-    if (m_ppCRingBuffer) {
         for (int i = 0; i < m_iNumChannels; i++) {
             delete m_ppCRingBuffer[i];
         }
-    }
     delete [] m_ppCRingBuffer;
     
 }
@@ -40,7 +38,9 @@ Error_t CVibrato::create(CVibrato*& pCVibrato) {
 }
 
 Error_t CVibrato::destroy(CVibrato*& pCVibrato) {
-    delete pCVibrato;
+    if (pCVibrato) {
+        delete[] pCVibrato;
+    }
     return kNoError;
 }
 

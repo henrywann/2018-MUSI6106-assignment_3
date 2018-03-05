@@ -11,12 +11,14 @@ class CLfo
 {
 public:
     CLfo(float fSampleRate, float fModFreq)
-//    m_fSampleRate(fSampleRate),
-//    m_fModFreq(fModFreq)
+
     {
         m_fSampleRate = fSampleRate;
         m_fModFreq = fModFreq;
         m_iLfoBufferLength = round(m_fSampleRate/m_fModFreq);
+        if (m_iLfoBufferLength <= 0) {
+            m_iLfoBufferLength = 1;
+        }
         m_pCRingBuffer = new CRingBuffer<float>(m_iLfoBufferLength);
         float fwaveTable[m_iLfoBufferLength];
         CSynthesis::generateSine(fwaveTable, m_fModFreq, m_fSampleRate, m_iLfoBufferLength);
