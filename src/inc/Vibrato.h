@@ -9,7 +9,9 @@ template <class T>
 class CRingBuffer;
 
 /*
- * brief explanation about your class-interface design
+ * Parameters are stored in an enum,VibratoParam_t. We want the client to have init, reset, setParam, getParam,
+ * and process functionalities to the class CVibrato. Other variables and useful classes like CRingBuffer and CLfo
+ * are stored in private. 
  */
 
 class CVibrato

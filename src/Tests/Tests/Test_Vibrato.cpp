@@ -83,7 +83,7 @@ SUITE(Vibrato)
         
         // generate simple sine wave
         for (int i = 0; i < iNumChannels; i++) {
-            CSynthesis::generateSine(ppTestInput[i], 100, iSampleRateInHz, iSigLenth);
+            CSynthesis::generateSine(ppTestInput[i], 440, iSampleRateInHz, iSigLenth);
         }
         resetBuffer();
         vibratoProcess(5, 0);
@@ -133,7 +133,20 @@ SUITE(Vibrato)
         }
     }
     
-    TEST_FIXTURE(VibratoData, myTest) {
+    TEST_FIXTURE(VibratoData, ValidInput) {
+        
+        for (int i = 0; i < iNumChannels; i++) {
+            CSynthesis::generateSine(ppTestInput[i], 440, iSampleRateInHz, iSigLenth);
+        }
+        
+        resetBuffer();
+        pcVibrato->init(0.02, iSampleRateInHz, iNumChannels, 0.1, 0);
+        VibratoData::pcVibrato->process(ppTestInput, ppTestOutput, iSigLenth);
+        
+        for (int i = 0; i < iNumChannels; i++) {
+            CHECK_ARRAY_CLOSE(ppTestInput[i], ppTestOutput[i], iSigLenth, 1e-3F);
+        }
+        std::cout << "haha" << std::endl;
         
     }
 

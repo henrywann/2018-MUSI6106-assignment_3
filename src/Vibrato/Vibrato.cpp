@@ -11,6 +11,9 @@
 #include "Lfo.h"
 #include "Vibrato.h"
 
+#include <iostream>
+
+
 CVibrato::CVibrato():
     m_pCLfo(0),
     m_ppCRingBuffer(0),
@@ -45,6 +48,11 @@ Error_t CVibrato::destroy(CVibrato*& pCVibrato) {
 }
 
 Error_t CVibrato::init(float iMaxDelayInSec, float fSampleRateInHz, int iNumChannels, float fModWidth, float fModFreq) {
+    if(iMaxDelayInSec<fModWidth) {
+        std::cout << "Invalid Input, max delay must be greater than mod width" << std::endl;
+        exit(-1);
+    }
+    
     int iMaxDelayInSample = floor(iMaxDelayInSec*fSampleRateInHz);
     m_fSampleRate = fSampleRateInHz;
     m_iNumChannels = iNumChannels;
