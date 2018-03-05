@@ -27,15 +27,10 @@ SUITE(Vibrato)
             iSigLenth = 4000;
             iBlockSize = 1024;
             fMaxDelayInSec = 0.2f;
-            //            fWidth = 0.0025f;
-            //            fModFreq = 5;
-            
             
             ppTestOutput = new float*[iNumChannels];
             ppTestInput = new float*[iNumChannels];
             for (int i = 0; i < iNumChannels; i++) {
-//                ppTestOutput[i] = new float[iSigLenth];
-//                ppTestInput[i] = new float[iSigLenth];
                 
                 *(ppTestInput + i) = new float [iSigLenth];
                 *(ppTestOutput + i) = new float [iSigLenth];
@@ -53,7 +48,6 @@ SUITE(Vibrato)
         {
             // teardown
             // e.g., deallocate the vibrato object and test signal
-//            CVibrato::destroy(pcVibrato);
             for (int i = 0; i < iNumChannels; i++) {
                 delete [] ppTestOutput[i];
                 delete [] ppTestInput[i];
